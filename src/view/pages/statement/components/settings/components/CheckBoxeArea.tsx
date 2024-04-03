@@ -6,8 +6,20 @@ import { isSubPageChecked } from "../statementSettingsCont";
 import CustomSwitch from "../../../../../components/switch/CustomSwitch";
 
 // HELPERS
-import { navArray } from "../../nav/top/StatementTopNavModel";
+import { NavName, navArray } from "../../nav/top/StatementTopNavModel";
 import { useLanguage } from "../../../../../../functions/hooks/useLanguages";
+
+import { FC } from "react";
+
+// icons
+import NetworkIcon from "../../../../../../assets/icons/networkIcon.svg?react";
+import ChatIcon from "../../../../../../assets/icons/roundedChatDotIcon.svg?react";
+import EvaluationsIcon from "../../../../../../assets/icons/evaluationsIcon.svg?react";
+import VotingIcon from "../../../../../../assets/icons/votingIcon.svg?react";
+import QuestionIcon from "../../../../../../assets/icons/questionIcon.svg?react";
+import MassQuestionsIcon from "../../../../../../assets/icons/massQuestionsIcon.svg?react";
+import RoomsIcon from "../../../../../../assets/icons/roomsIcon.svg?react";
+import SettingsIcon from "../../../../../../assets/icons/settingsIcon.svg?react";
 
 export default function CheckBoxeArea({
     statement,
@@ -43,6 +55,7 @@ export default function CheckBoxeArea({
                             link={navObj.link}
                             label={navObj.name}
                             defaultChecked={isSubPageChecked(statement, navObj)}
+                            children={<NavIcon name={navObj.name as NavName} />}
                         />
                     ))}
             </div>
@@ -73,3 +86,24 @@ export default function CheckBoxeArea({
         </section>
     );
 }
+
+const mapNavNameToIcon: Record<NavName, typeof NetworkIcon> = {
+    [NavName.Main]: NetworkIcon,
+    [NavName.Chat]: ChatIcon,
+    [NavName.Evaluations]: EvaluationsIcon,
+    [NavName.Voting]: VotingIcon,
+    [NavName.Questions]: QuestionIcon,
+    [NavName.MassQuestions]: MassQuestionsIcon,
+    [NavName.Rooms]: RoomsIcon,
+    [NavName.Settings]: SettingsIcon,
+};
+
+interface NavIconProps {
+    name: NavName;
+}
+
+const NavIcon: FC<NavIconProps> = ({ name }) => {
+    const Icon = mapNavNameToIcon[name];
+
+    return <Icon />;
+};
