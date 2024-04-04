@@ -1,26 +1,24 @@
 .switch {
     height: 1.85rem;
-    width: 170px;
+    width: 100%;
     position: relative;
     border-radius: 0.285rem;
     font-size: 0.8rem;
     display: flex;
     align-items: center;
-    margin-inline-end: -20px;
 
     &.checked {
-        margin-inline-start: -20px;
-        margin-inline-end: 0;
-
         .tag {
             background-color: #4e88c7;
             color: white;
-            left: 150px;
+            left: 180px;
         }
 
         .label {
             background-color: #74adf0;
             color: white;
+            margin-inline-start: 0;
+            margin-inline-end: 20px;
         }
     }
 
@@ -40,11 +38,11 @@
         align-items: center;
         justify-content: center;
         color: #769cc2;
-        left: -20px;
+        left: 0;
     }
 
     .label {
-        flex: 1;
+        width: 200px;
         background-color: #e5f2ff;
         transition: all 0.25s linear;
         color: #769cc2;
@@ -56,5 +54,6 @@
         user-select: none;
         padding-block: 5px;
         padding-inline: 30px;
+        margin-inline-start: 20px;
     }
 }
